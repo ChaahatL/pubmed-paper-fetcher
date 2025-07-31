@@ -1,3 +1,22 @@
-".venv/" 
-"__pycache__/" 
-"*.pyc" 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+
+# Virtual Environments
+.venv/
+.env/
+
+# Poetry
+poetry.lock
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
