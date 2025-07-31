@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-"# PubMed Paper Fetcher" 
-=======
 # PubMed Paper Fetcher
 
 A command-line tool to fetch **research papers from PubMed** based on a user query and identify papers with **at least one author affiliated with a pharmaceutical or biotech company**.
@@ -122,4 +119,3 @@ Will generate `results.csv` with columns:
 * Publishing the module to TestPyPI
 
 ---
->>>>>>> 77e74c55c2a9ade32e43efb90d937bd9ee5b3bde
