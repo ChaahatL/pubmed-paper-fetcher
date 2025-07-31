@@ -1,61 +1,68 @@
-# PubMed Paper Fetcher
+# 📄 **PubMed Paper Fetcher CLI**
 
-A command-line tool to fetch **research papers from PubMed** based on a user query and identify papers with **at least one author affiliated with a pharmaceutical or biotech company**.
+A command-line tool to fetch research papers from **PubMed** based on a user query and identify papers with at least one author affiliated with a **pharmaceutical** or **biotech** company.
 
 The results can be printed to the console or saved to a CSV file.
 
 ---
 
-## Features
+## ✨ Features
 
-✅ Fetches papers from **PubMed API** using full query syntax                                                                                                               
-✅ Filters papers to detect **non-academic authors** and **company affiliations** (pharma/biotech)      
-✅ Outputs to **console** or **CSV file**      
-✅ Optional **debug mode** to show API flow and intermediate data      
-✅ Built with **Poetry** for dependency management & packaging      
+✅ Fetches papers from **PubMed API** using full query syntax      
+✅ Filters papers to detect **non-academic authors** and **company affiliations (pharma/biotech)**    
+✅ Outputs to **console** or **CSV file**    
+✅ Optional **debug mode** to show API flow and intermediate data    
+✅ Built with **Poetry** for dependency management & packaging    
 
 ---
 
-##  Code Structure
+## 📂 Project Structure
 
 ```
-pubmed-paper-fetcher/
+pubmed-cli-tool/
 │
-├── pubmed_paper_fetcher/
-│   ├── fetcher.py        # API calls to PubMed (ESearch & EFetch)
-│   ├── filters.py        # Parsing XML & identifying non-academic/company authors
-│   ├── utils.py          # CSV saving utility
+├── pubmed_cli/               # Core package
+│   ├── fetcher.py            # PubMed API calls (Entrez E-utilities)
+│   ├── filters.py            # Logic for parsing & identifying pharma/biotech authors
+│   ├── utils.py              # CSV saving utilities
 │   └── __init__.py
 │
-├── scripts/
-│   ├── cli.py            # CLI entry point
+├── scripts/                  # CLI entry point
+│   ├── cli.py                # Main CLI logic (argparse)
 │   └── __init__.py
 │
-├── pyproject.toml        # Poetry config (dependencies, CLI command)
-├── README.md             # Documentation
+├── tests/                    # Pytest test suite
+│   ├── test_cli.py
+│   ├── test_fetcher.py
+│   └── test_filter.py
+│
+├── dist/                     # (auto-generated) build artifacts for TestPyPI/PyPI
+├── pyproject.toml            # Poetry config (dependencies, CLI command)
+├── README.md                 # Documentation
 └── ...
 ```
 
 ---
 
-##  Installation
+## 🔧 Installation (Developers)
 
-### Clone repo
+Clone the repo & install dependencies:
 
 ```bash
-git clone https://github.com/<your-username>/pubmed-paper-fetcher.git
-cd pubmed-paper-fetcher
+git clone https://github.com/<your-username>/pubmed-cli-tool.git
+cd pubmed-cli-tool
+poetry install
 ```
 
-### Install dependencies
+Run tests to verify everything works:
 
 ```bash
-poetry install
+poetry run pytest
 ```
 
 ---
 
-## Usage
+## 🚀 Usage
 
 Run the CLI command:
 
@@ -71,21 +78,23 @@ poetry run get-papers-list "<your-query>"
 -h, --help            Show help message
 ```
 
-### Examples
+---
 
-**1. Print to console**
+### 📌 Examples
 
-```bash
-poetry run get-papers-list "cancer immunotherapy" -d
-```
-
-**2. Save to CSV**
+#### 1️⃣ Print to console:
 
 ```bash
-poetry run get-papers-list "cancer immunotherapy" -d -f results.csv
+poetry run get-papers-list "cancer immunotherapy" --debug
 ```
 
-Will generate `results.csv` with columns:
+#### 2️⃣ Save to CSV:
+
+```bash
+poetry run get-papers-list "cancer immunotherapy" -f results.csv
+```
+
+This generates **`results.csv`** with columns:
 
 * PubmedID
 * Title
@@ -96,26 +105,28 @@ Will generate `results.csv` with columns:
 
 ---
 
-## How Non-Academic Authors & Company Affiliations Are Identified
+## 🔍 How It Detects Pharma/Biotech Authors
 
-* Affiliations containing words like `university`, `college`, `institute`, or `hospital` are treated as **academic**.
-* Affiliations containing keywords like `pharma`, `biotech`, `inc`, `ltd`, `corp`, or `therapeutics` are treated as **company affiliations**.
-
----
-
-## Tools Used
-
-* **[Poetry](https://python-poetry.org/)** – Dependency management & packaging
-* **[Requests](https://docs.python-requests.org/)** – API calls to PubMed
-* **[xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html)** – Parsing PubMed XML
-* **ChatGPT (OpenAI)** – Used for code scaffolding & structuring ideas
+* **Academic affiliations** (university, college, institute, hospital) are treated as academic.
+* **Company affiliations** (pharma, biotech, inc, ltd, corp, therapeutics) are flagged as industry.
 
 ---
 
-## Future Improvements
+## 🛠 Tools & Libraries
 
-* More advanced affiliation detection (ML-based classification)
-* Better handling of partial/missing metadata
-* Publishing the module to TestPyPI
+* **Poetry** – Dependency management & packaging
+* **Biopython** – PubMed API access (via `Bio.Entrez`)
+* **Requests** – API calls
+* **argparse** – CLI parsing
+* **pytest** – Testing framework
+
+---
+
+## 📦 Future Improvements
+
+* ML-based affiliation classification
+* More robust handling of missing metadata
+* Better CSV formatting options
+* Continuous integration tests
 
 ---
