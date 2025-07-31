@@ -1,5 +1,5 @@
 [project]
-name = "pubmed-paper-fetcher"
+name = "pubmed-paper-fetcher-cl"
 version = "0.1.0"
 description = "Fetch PubMed papers and filter for pharma/biotech authors"
 authors = [
@@ -14,7 +14,13 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-package-mode = false
+packages = [
+    { include = "pubmed_paper_fetcher" } 
+]
+
 
 [tool.poetry.scripts]
 get-papers-list = "scripts.cli:main"
+[tool.poetry.group.dev.dependencies]
+twine = "^6.1.0"
+
