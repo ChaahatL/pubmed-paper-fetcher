@@ -1,6 +1,6 @@
 [project]
 name = "pubmed-paper-fetcher-cl"
-version = "0.1.0"
+version = "0.1.1"
 description = "Fetch PubMed papers and filter for pharma/biotech authors"
 authors = [
     {name = "ChaahatL", email = "chaahatlokhande@gmail.com"}
